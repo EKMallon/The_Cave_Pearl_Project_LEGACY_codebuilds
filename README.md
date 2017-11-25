@@ -1,5 +1,6 @@
 # The_Cave_Pearl_Project_CURRENT_codebuilds
-Base code for the Arduino compatible "Modules &amp; Jumper Wires" data logger described on the project's blog.
+Base code for the Arduino compatible "Modules &amp; Jumper Wires" data logger described on the project's blog
+at [ https://edwardmallon.wordpress.com/how-to-build-an-arduino-data-logger/ ]
 
 The overall data buffering/saving functions at the heart of the code have has been made generic by the use of
 Mikal Hart's PString library [ http://arduiniana.org/libraries/pstring/ ] which is used to concatenate sensor 
