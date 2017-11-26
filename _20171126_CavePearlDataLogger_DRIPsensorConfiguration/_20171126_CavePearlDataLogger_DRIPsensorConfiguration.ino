@@ -1,5 +1,6 @@
-/*       Cave Pearl Project Data Logger code written and developed by Edward Mallon  https://edwardmallon.wordpress.com/  
- *  
+/*       Cave Pearl Project Data Logger code      DOI: 10.13140/RG.2.2.12299.18725
+ *       written and developed by Edward Mallon  https://edwardmallon.wordpress.com/
+ *       
  *       This script incorporates the work of many other people for the libraries and some sensor functions. I have done my best 
  *       to cite these sources directly in the comments with each section, and I make no claims whatsoever on those sections of code.
  *       That being said, the integration of these components into a functional datalogging codebase is something that I have spent 
