@@ -23,7 +23,8 @@ void loop ()
 while (rtc_INT0_Flag == false) { 
 //...stuff in here for handling the D3 alarms: debouncing delays, etc....
 sleepNwait4D3Interrupt();    // the ISRs that wake from this sleep function set either INT1_Flag = true;  OR  rtc_INT0_Flag = true;
-} // end of while (rtc_INT0_Flag == false)
+}                               // end of while (rtc_INT0_Flag == false)
+#endif
 
 // you only break out of the while-loop when rtc_INT0_Flag = true - so the RTC, rather than the acceleometer fired the alarm
 // proceed back to start of main loop and read all sensors
