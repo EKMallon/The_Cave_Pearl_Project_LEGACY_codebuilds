@@ -21,14 +21,14 @@ void loop ()
 {
 
 // the main loop proceeds through a set of standard sample-interval events  (common to ALL code variants)
-1) read rtc, make current timestamp...
-2) check if new log file needs to be generated...
-3) capture new sensor readings....
+1) read rtc, make current timestamp
+2) check if new log file needs to be generated
+3) capture new sensor readings
 4a) concatenate sensor data to EEPROMBuffer char array with Pstring
 4b) buffer that array to eeprom (step 4 repeats 2x)
-5) if eeprom memory is full - flush eeprom data to the SD card...
+5) if eeprom memory is full - flush eeprom data to the SD card
 6) if midnight rollover occurs, trigger oncePerDayEvents() to save daily totals to StatusLog.csv 
-7) set next alarm time based on SampleIntervalMinutes variable...
+7) set next alarm time based on SampleIntervalMinutes variable
 
 //After running through those standard tasks, EVENT counters are captured by this #if defined statement:
 
