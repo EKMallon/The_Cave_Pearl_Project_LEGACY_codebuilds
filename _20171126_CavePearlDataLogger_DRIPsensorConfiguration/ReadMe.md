@@ -29,7 +29,7 @@ void loop ()
 4b) buffer that array to eeprom (step 4 repeats 2x)
 5) if eeprom memory is full - flush eeprom data to the SD card
 6) if midnight rollover occurs, trigger oncePerDayEvents() to save daily totals to StatusLog.csv 
-7) set next alarm time based on SampleIntervalMinutes variable
+7) set next alarm time based on SampleIntervalMinutes
 
 //After running through those standard tasks, EVENT counters are captured by this #if defined statement:
 #if defined(AdxlDripSensor) || defined(TipBucket_RainGauge)  //the EVENT counter "sub-loop"
