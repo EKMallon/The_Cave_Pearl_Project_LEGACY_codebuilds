@@ -31,18 +31,19 @@ void loop ()
 7) set next alarm time based on SampleIntervalMinutes variable
 
 //After running through those standard tasks, EVENT counters are captured by this #if defined statement:
-
 #if defined(AdxlDripSensor) || defined(TipBucket_RainGauge)  //the EVENT counter "sub-loop"
+
 while (rtc_INT0_Flag == false) { 
+
 //...stuff in here for handling the D3 alarms with debouncing delays, register resets, etc....
 
 sleepNwait4D3Interrupt();    // ISRs from this function set EITHER INT1_Flag = true;  OR  rtc_INT0_Flag = true;
-}                            // end of while (rtc_INT0_Flag == false)
-
-// you only break out of this event counting while-loop when rtc_INT0_Flag = true 
+} 
+// you only break out of this while-loop when rtc_INT0_Flag = true 
 // so the RTC alarm has fired on D2, rather than the D3 based interrupt. 
 
 #else
+
 sleepNwait4RTC();      //this is the standard RTC-ALARM-ONLY processor sleeping routine
 // used when no other interrupt generating device (Adxl345/TipBucket/etc) is connected to D3
 
