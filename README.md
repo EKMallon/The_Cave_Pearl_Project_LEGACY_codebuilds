@@ -1,3 +1,5 @@
+<img src="https://github.com/EKMallon/The_Cave_Pearl_Project_CURRENT_codebuilds/blob/master/images/CavePearlProjectBanner_130x850px.jpg">
+
 # The_Cave_Pearl_Project_CURRENT_codebuilds
 Base code for the Arduino compatible "Modules &amp; Jumper Wires" data logger described on the project's blog
 at  https://edwardmallon.wordpress.com/how-to-build-an-arduino-data-logger/ 
