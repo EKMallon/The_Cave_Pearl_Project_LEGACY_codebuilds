@@ -1,4 +1,5 @@
-Readme file for 
+<img src="https://github.com/EKMallon/The_Cave_Pearl_Project_CURRENT_codebuilds/blob/master/images/CavePearlProjectBanner_130x850px.jpg">
+
 # 20171126_CavePearlDataLogger_DRIPsensorConfiguration:
 
 This uses the Cave Pearl data logger as an event counter with an ISR responding to hardware interrrupts
