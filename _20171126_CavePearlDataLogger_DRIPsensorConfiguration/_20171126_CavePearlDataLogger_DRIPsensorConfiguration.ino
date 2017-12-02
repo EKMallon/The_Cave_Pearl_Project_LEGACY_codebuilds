@@ -845,6 +845,7 @@ else  //to get sub-minute alarms use the full setA1time function
 //=================================================
 // Based on information from http://www.gammon.com.au/forum/?id=11497
 // Responds to both hardware interrupt lines
+// Note: attachInterrupt() needs an interrupt number, not a pin number.
 
 #if defined(AdxlDripSensor) || defined(TipBucket_RainGauge)
 //Note that this sleep enables sensor interrupts on D3, AND the RTC alarm interrupt on D2
@@ -1181,13 +1182,13 @@ void flushEEpromBuffer() {  //ADC reads integrated here to test main battery und
   batteryVoltage = readBattery();// Check psupply to make sure its ok to write to sd card - readBattery triggers shutdown if battery is low
   ADCSRA=keep_ADCSRA; // used for PRR shutdown & wakeup of ADC
   ADMUX = bit (REFS0) | (0 & 0x07);  // set AVcc to rail and select input port A0
-  uint16_t lowestSDwriteBatt=analogRead(batteryPin); //throw away reading
+  uint16_t lowestSDwriteBatt=analogRead(batteryPin); //a throw-away reading while cap charges
   
-  // Initialize SdFat or print error message and halt
-  if (!sd.begin(chipSelect, SPI_FULL_SPEED)) {  // Use half speed like the native library for old cards // change to SPI_FULL_SPEED for more performance.
-    Serial.println(F("Could NOT initialize SD Card")); Serial.flush();
-    error();
-  }
+// ONLY If you cut power to the SD cards, you would need to re-Initialize SdFat here or print error message and halt
+//if (!sd.begin(chipSelect, SPI_FULL_SPEED)) {  // Use half speed like the native library for old cards // change to SPI_FULL_SPEED for more performance.
+//Serial.println(F("Could NOT initialize SD Card")); Serial.flush();
+//error();
+//}
 
 #ifdef ECHO_TO_SERIAL
   Serial.println(F("--Writing to SDcard --"));
@@ -1231,18 +1232,18 @@ void flushEEpromBuffer() {  //ADC reads integrated here to test main battery und
 
 void createNewLogFile() {
 
-  // Initialize SdFat or print a detailed error message and halt
-  // Use half speed like the native library. //change to SPI_FULL_SPEED for more performance.//SPI_HALF_SPEED is for older cards
-  if (!sd.begin(chipSelect, SPI_FULL_SPEED)) {
-    Serial.println(F("Could NOT initialize SD Card")); Serial.flush();
-    error();
-  }
+// ONLY if SD card was de-powered: Initialize SdFat or print a detailed error message and halt
+// Use half speed like the native library. //change to SPI_FULL_SPEED for more performance.//SPI_HALF_SPEED is for older cards
+//  if (!sd.begin(chipSelect, SPI_FULL_SPEED)) {
+//  Serial.println(F("Could NOT initialize SD Card")); Serial.flush();
+//  error();
+//  }
 
-  // If we are creating another file after newFileInterval, then we must close any open files first.
-  //if (file.isOpen()) {
-  //  file.close();
-  //}
-  //delay(10);
+// Just a safety check to make sure any open files are closed first.
+if (file.isOpen()) {
+file.close();
+}
+delay(10);
   
 // 2 GB or smaller cards should be formatted FAT16 which has a limit of 512 entries in root  // https://forum.arduino.cc/index.php?topic=301335.0
   for (int i = 0; i < 512; i++) {
