@@ -515,11 +515,11 @@ void loop ()
     // alt: sprintf(CycleTimeStamp, "%04d/%02d/%02d %02d:%02d:%02d", now.year(), now.month(), now.day(), now.hour(), now.minute(), now.second()); // Time read always occurs <1 sec after RTC interrupt, so seconds data was always "00" - so I dont record it
 
     //calculate the time for your next RTC alarm: (Note: roll-overs get caught later)
-    Alarmhour = t_hour; // Alarmhour = now.hour(); //with #include <RTClib.h>
-    Alarmminute = t_minute + SampleIntervalMinutes; //Alarmminute = now.minute()+SampleIntervalMinutes; //with #include <RTClib.h>
+    Alarmhour = t_hour; 
+    Alarmminute = t_minute + SampleIntervalMinutes;
     // Make sure your sensor readings don't take longer than your sample interval or you pass your next alarm time & clock fails!
-    Alarmday = t_day; //Alarmday = now.day(); //with #include <RTClib.h>
-    Alarmsecond = t_second + SampleIntervalSeconds; //only used for special testing & debugging runs - usually gets ignored
+    Alarmday = t_day; 
+    Alarmsecond = t_second + SampleIntervalSeconds; //only used for special testing & debugging runs - ignored unless SampleIntervalMinutes=0
     // Now we read the sensors that are attached:
     //-------------------------------------------
 
@@ -720,6 +720,9 @@ else  //to get sub-minute alarms use the full setA1time function
              for (int j = 0; j <12; j++){
              LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF); 
              }
+             RTC_DS3231_getTime(); // the delay to force a midnight rollover requires another time read:
+             Alarmday = t_day;Alarmhour = t_hour;Alarmminute = t_minute;
+             Alarmsecond = t_second + SampleIntervalSeconds;
           }
         }
       }
