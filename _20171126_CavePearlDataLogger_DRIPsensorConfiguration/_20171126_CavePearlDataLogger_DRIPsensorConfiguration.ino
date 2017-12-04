@@ -1354,9 +1354,6 @@ void writeHeaderInfo()
 
   file.println();
   file.println(F("Etime=(CELL*interval in Seconds)/(86400)+ \"1/1/1970\"")); //note you can "escape" a special character by preceding it with a backslash
-if (printStatusLogHeaders) {  
-  file.println(F(",,,,,,,,,Daily Totals,,,,,StatusLog.csv Data")); // commas push this over to right
-}// terminator for if (printStatusLogHeaders)
 
 //this is STANDARD for ALL units : data from first 30 byte eeprom buffer page
 file.print(F("TimeStamp,BatT(mV),RAWtemp(*.0625),"));
