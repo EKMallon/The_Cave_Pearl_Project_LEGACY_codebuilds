@@ -1,11 +1,11 @@
-/*       Cave Pearl Project Data Logger code      DOI: 10.13140/RG.2.2.12299.18725
- *       written and developed by Edward Mallon  https://edwardmallon.wordpress.com/
+/*       Cave Pearl Project Data Logger Script      DOI: 10.13140/RG.2.2.12299.18725
+ *       developed by Edward Mallon                https://edwardmallon.wordpress.com/
  *       
  *       This script incorporates the work of many other people for the libraries and some sensor functions. I have done my best 
  *       to cite these sources directly in the comments with each section, and I make no claims whatsoever on those sections of code.
- *       That being said, the integration of these components into a functional datalogging codebase is something that I have spent 
+ *       However the integration of these components into a functional data logger codebase is something that I have spent 
  *       many months of hard work testing and refining, especially with regard to generic data buffering/saving functions which can 
- *       gracefully adapat to whatever sensor variables you feed into them. Please credit the Cave Pearl Project if you 
+ *       gracefully adapat to whatever sensor variables you feed them. Please credit the Cave Pearl Project if you 
  *       use this software as the basis of for your own datalogger or other kind of project. 
  *
  *       This particular version is configured as an ADXL345 DRIP SENSOR, and assumes the following hardware
@@ -26,6 +26,17 @@
  *       I use the RocketScream sleep library <LowPower.h> to enable short processor sleeps at run-time while waiting for sensor readings
  *       but the power-down state between sensor readings uses RTC hardware interrupts to wake from sleep [see: https://www.gammon.com.au/forum/?id=11497 ]
  *       
+ *       THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *       THE SOFTWARE.
+ *       
+ *       Also Note: I don't deploy any data logger I've built until its been running 
+ *       with a 1min sample interval and saving data WITHOUT ERROR for AT LEAST TWO WEEKS.
+ *       I strongly advise you to test your DIY equipment to the same degree. 
  */
 
 #include <Wire.h>       // I2C lib needs 128 bytes of ram for Serial buffer
