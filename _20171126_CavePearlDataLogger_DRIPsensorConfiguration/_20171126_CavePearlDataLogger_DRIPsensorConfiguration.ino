@@ -108,12 +108,12 @@ int freeMem = 9999;       // dynamic memory at run time is always less than the 
 // battery level tracking:
 uint16_t batteryVoltage = 9999;     //the main battery voltage (via 1.1 internal band gap OR analog read)
 #define batteryPin A0               //where you have connected the voltage divider tracking the main battery voltage
-uint16_t postSDbatt = 9999;         //the post SD card writing main battery voltage, 9999 until first card write cycle
+int postSDbatt = 9999;         //the post SD card writing main battery voltage, 9999 until first card write cycle
 const float resistorFactor = 511.5; // = 1023.0 * (R2/(R1 + R2)); // 511.5 if both resistors equal // 255.75 Assumes (high side=10Meg ohm)/(low side=3.3Meg ohm)divider
 const float referenceVolts = 3.30;  // You need to check this with a DVM for each board to get accurate battery readings.
 uint16_t CoinCellV = 9999;          // On SOME loggers I have voltage divider on the RTC coin cell connected to line A1 - this reading occurs only once per day
 uint16_t VccBGap = 0;               //tracks of the main regulators output voltage using the internal 1.1v bandgap trick
-uint16_t postSDvcc = 9999;
+int postSDvcc = 9999;
 uint16_t blueBatteryLevel;          //Standard SensorRead LED pip changes from Green -> Blue -> Red based on these levels to tell you when battery is low
 uint16_t redBatteryLevel;           //to warn you when the batteries are running low
 
@@ -402,6 +402,15 @@ void setup () {
   writeHeaderInfo();
   file.close();
 
+
+  // preloads for the first status log entry
+  integerBuffer = readBattery(); if (integerBuffer < postSDbatt) {
+    postSDbatt = integerBuffer;
+  }
+  integerBuffer = getRailVoltage(); if (integerBuffer < postSDvcc) {
+    postSDvcc = integerBuffer; //this takes 10msec!
+  }
+  
 #ifdef ECHO_TO_SERIAL
   Serial.print(F("Current Filename:")); Serial.println(FileName); Serial.println();Serial.flush();
 #endif
@@ -430,10 +439,6 @@ void setup () {
   printStatusLogHeaders = false;
   
 #endif
-
-integerBuffer = getRailVoltage(); if (integerBuffer < postSDvcc) {
-    postSDvcc = integerBuffer;
-  }
   
 digitalWrite(RED_PIN, LOW);
 LowPower.powerDown(SLEEP_60MS, ADC_OFF, BOD_OFF);// SD cards can draw power for up to 1sec after file close...
