@@ -261,7 +261,7 @@ void setup () {
   Wire.begin();  // Note: this enables the internal 30-50k pull-up resistors on SDA & SCL by default
   //TWBR = 12;   // increase I2C bus speed to 200kHz with 8MHz or 400kHz mode with 16MHz CPU  see http://www.gammon.com.au/forum/?id=10896
   TWBR = 2;    // for 400 kHz @ 8MHz CPU speed ONLY! Bus may fail at this speed so comment this line out if you have sensor comm issues.
-  RTC_DS3231_getTime();
+  RTC_DS3231_getTime();eTime = RTC_DS3231_unixtime(); eTime = eTime / (long)(SampleIntervalMinutes * 60);//eTime fails with sub-minute sampling!
   sprintf(CycleTimeStamp, "%04d/%02d/%02d %02d:%02d", t_year, t_month, t_day, t_hour, t_minute);
   RTC_DS3231_turnOffAlarms();          //stops RTC from holding the D2 interrupt line low if system reset just occured with RTC.turnOffAlarm(1);
   pinMode(rtc_INT0_Pin, INPUT_PULLUP); // pull up the RTC interrupt pin (though this is redundant with most RTC modules)
@@ -431,6 +431,10 @@ void setup () {
   
 #endif
 
+integerBuffer = getRailVoltage(); if (integerBuffer < postSDvcc) {
+    postSDvcc = integerBuffer;
+  }
+  
 digitalWrite(RED_PIN, LOW);
 LowPower.powerDown(SLEEP_60MS, ADC_OFF, BOD_OFF);// SD cards can draw power for up to 1sec after file close...
 
