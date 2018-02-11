@@ -17,7 +17,7 @@ Each version posted here is necessarily a working variant for some specific sens
 of each script for those hardware dependencies. I use #ifdef / #endif statements throughought the code to include or exclude 
 blocks of sensor-specific code at compile time, depending on #define SensorName_Address statements at the start of the script.
 
-It is also worth noting that these live versions are reasonably complex, with quite a bit of functionality. If you are new to programming in the Arduino Environment, then a much simpler but still fully function version of the logger code can be found in the UNO-Breadboard repository:
+It is also worth noting that these live versions are reasonably complex, with quite a bit of functionality. If you are new to programming in the Arduino Environment, then a much simpler working version of the logger's code can be found in the UNO-Breadboard repository:
 
 https://github.com/EKMallon/UNO-Breadboard-Datalogger
 
