@@ -1,7 +1,5 @@
 <img src="https://github.com/EKMallon/The_Cave_Pearl_Project_CURRENT_codebuilds/blob/master/images/CavePearlProjectBanner_130x850px.jpg">
 
-# The_Cave_Pearl_Project_CURRENT_codebuilds
-
 This repository contains current logger base code builds for the  "Modules &amp; Jumper Wires" data logger described in 
 
 **Cave Pearl Data Logger: A Flexible Arduino-Based Logging Platform for Long-Term Monitoring in Harsh Environments**
