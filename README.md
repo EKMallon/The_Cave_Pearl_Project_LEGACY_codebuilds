@@ -20,3 +20,11 @@ It is also worth noting that these live versions are reasonably complex, with qu
 https://github.com/EKMallon/UNO-Breadboard-Datalogger
 
 That simpler UNO logger code saves data to the SD card on every cycle, rather than buffering to an eeprom first. Saving data to the SD card at every cycle uses less than 600mAs/day, while a logger that sleeps at 0.25 mA uses ~21,000 mAs during sleep. So you should still see at least 80% of the logger operating lifespan you'd get from the more complicated buffering code. (ie: >8 months on a full set of AA batteries) if you run the UNO logger code on the Pro Mini build shown above.
+
+You will find an introduction to the different types of sensors that you can use with this logger at:
+**Arduino Tutorial: Adding Sensors to Your Data Logger** 
+https://thecavepearlproject.org/2017/12/17/adding-sensors-to-an-arduino-data-logger/
+
+and a more advanced introduction to setting control registers for I2C sensors at:
+**Arduino Tutorial: How to Configure I2C Sensors**
+https://thecavepearlproject.org/2017/11/03/configuring-i2c-sensors-with-arduino/
