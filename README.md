@@ -28,3 +28,6 @@ https://thecavepearlproject.org/2017/12/17/adding-sensors-to-an-arduino-data-log
 and a more advanced introduction to setting control registers for I2C sensors at:
 **Arduino Tutorial: How to Configure I2C Sensors**
 https://thecavepearlproject.org/2017/11/03/configuring-i2c-sensors-with-arduino/
+
+**And finally:** I have a directory of little utility scripts that come in very handy when testing your Arduino based data loggers at:
+https://github.com/EKMallon/Utilities
