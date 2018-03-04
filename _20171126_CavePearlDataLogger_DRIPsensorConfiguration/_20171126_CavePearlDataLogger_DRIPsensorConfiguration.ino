@@ -844,7 +844,7 @@ else  //to get sub-minute alarms use the full setA1time function
     digitalWrite(SensorReadLED, LOW);  //just makeing sure it is off
     sleepNwait4RTC();  //sleep and wait for RTC ONLY -  call is inside the main cycle counter loop */
 
-    start = micros();
+    startMicros = micros();
     if (rtc_INT0_Flag) {      //if you broke out of the while loop, then your RTC interrupt fired.
       RTC_DS3231_turnOffAlarms();      //and you need to clear that alarm
     }
