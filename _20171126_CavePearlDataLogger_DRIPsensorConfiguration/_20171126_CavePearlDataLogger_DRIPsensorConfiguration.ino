@@ -1,5 +1,5 @@
 /*       Cave Pearl Project Data Logger Script      DOI: 10.13140/RG.2.2.12299.18725
- *       developed by Edward Mallon                https://edwardmallon.wordpress.com/
+ *       developed by Edward Mallon                https://thecavepearlproject.org/
  *       
  *       This script incorporates the work of many other people for the libraries and some sensor functions. I have done my best 
  *       to cite these sources directly in the comments with each section, and I make no claims whatsoever on those sections of code.
