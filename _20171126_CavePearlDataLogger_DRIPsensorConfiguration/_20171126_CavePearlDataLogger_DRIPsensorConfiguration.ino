@@ -433,7 +433,7 @@ void setup () {
   LowPower.powerDown(SLEEP_15MS, ADC_OFF, BOD_OFF); //give the sd some time for housekeeping.
 
   printStatusLogHeaders = true;
-  file.open("StatusLog.csv", O_CREAT | O_WRITE);
+  file.open("StatsLog.csv", O_CREAT | O_WRITE);
   writeHeaderInfo();
   file.close();
   printStatusLogHeaders = false;
@@ -1001,7 +1001,7 @@ void oncePerDayEvents() {
   readADXL345(); //Read the accelerometer xyz once per day to make sure the sensor has not moved or fallen over
 #endif
 
-  file.open("StatusLog.csv", O_WRITE | O_APPEND);
+  file.open("StatsLog.csv", O_WRITE | O_APPEND);
   //  .write()  Writes binary data bytes to the port.
   //  .print()  Prints data to the port as human-readable ASCII text. 
   //   so Serial.write accepts single characters where Serial.print accepts strings
