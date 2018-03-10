@@ -267,11 +267,9 @@ void setup () {
   pinMode(rtc_INT0_Pin, INPUT_PULLUP); // pull up the RTC interrupt pin (though this is redundant with most RTC modules)
   pinMode(INT1_pin, INPUT_PULLUP);     // also pull up the hardware interrupt01 on D3 with internal 20K pullup resistors
   i2c_setRegisterBit(DS3231_ADDRESS, DS3231_STATUS_REG, 3, 0);    // disable the 32khz output  pg14-17 of datasheet  // This does not reduce the sleep current
-//i2c_setRegisterBit(DS3231_ADDRESS, DS3231_CONTROL_REG, 6, 1); // Bit 6 (Battery-Backed Square-Wave Enable) of control register 0Eh, set this to 1 to force the wake-up alarms when running from the back up battery
+  i2c_setRegisterBit(DS3231_ADDRESS, DS3231_CONTROL_REG, 6, 1); // Bit 6 (Battery-Backed Square-Wave Enable) of control register 0Eh, set this to 1 to force the wake-up alarms when running from the back up battery
 //i2c_setRegisterBit(DS3231_ADDRESS,DS3231_STATUS_REG,4,1);     // see APPLICATION NOTE 3644 - only for the DS3234
 //i2c_setRegisterBit(DS3231_ADDRESS,DS3231_STATUS_REG,5,1);     // setting bits 4&5 to 1, extends the time between RTC temp updates to 512seconds (from default 64s)
-
-    i2c_setRegisterBit (DS3231_ADDRESS,DS3231_CONTROL_REG,6,1); //enable battery powered wake-up alarms
   
   // the following routine updates the clock to the code compile time if it is out of date
   // RTC_DS3231_set2compilerTime (F(__DATE__), F(__TIME__));
