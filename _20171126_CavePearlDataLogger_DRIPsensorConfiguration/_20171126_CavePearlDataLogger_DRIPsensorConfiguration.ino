@@ -235,8 +235,6 @@ void setup () {
 #ifdef RTCPOWER_PIN
   digitalWrite(RTCPOWER_PIN, OUTPUT);// IF you are pin-powering the chip:
   pinMode(RTCPOWER_PIN, HIGH); // driving this high supplies power to the RTC Vcc pin while arduino is awake
-  delay(30); 
-  i2c_setRegisterBit (DS3231_ADDRESS,DS3231_CONTROL_REG,6,1); //enable battery powered wake-up alarms
 #endif
 
   //turn on internal pullups for three SPI lines to help some SD cards go to sleep faster
@@ -273,6 +271,8 @@ void setup () {
 //i2c_setRegisterBit(DS3231_ADDRESS,DS3231_STATUS_REG,4,1);     // see APPLICATION NOTE 3644 - only for the DS3234
 //i2c_setRegisterBit(DS3231_ADDRESS,DS3231_STATUS_REG,5,1);     // setting bits 4&5 to 1, extends the time between RTC temp updates to 512seconds (from default 64s)
 
+    i2c_setRegisterBit (DS3231_ADDRESS,DS3231_CONTROL_REG,6,1); //enable battery powered wake-up alarms
+  
   // the following routine updates the clock to the code compile time if it is out of date
   // RTC_DS3231_set2compilerTime (F(__DATE__), F(__TIME__));
   // BUT that also makes it impossible to catch drift errors...
