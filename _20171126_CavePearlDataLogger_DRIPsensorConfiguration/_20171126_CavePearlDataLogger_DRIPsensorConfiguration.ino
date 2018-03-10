@@ -235,6 +235,8 @@ void setup () {
 #ifdef RTCPOWER_PIN
   digitalWrite(RTCPOWER_PIN, OUTPUT);// IF you are pin-powering the chip:
   pinMode(RTCPOWER_PIN, HIGH); // driving this high supplies power to the RTC Vcc pin while arduino is awake
+  delay(30); 
+  i2c_setRegisterBit (DS3231_ADDRESS,DS3231_CONTROL_REG,6,1); //enable battery powered wake-up alarms
 #endif
 
   //turn on internal pullups for three SPI lines to help some SD cards go to sleep faster
