@@ -882,8 +882,8 @@ void sleepNwait4D3Interrupt()    //the gammon version I'm using
   ADCSRA = 0; //disable the ADC - worth 334 µA during sleep
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);
   noInterrupts ();          // make sure we don't get interrupted before we sleep
-  attachInterrupt(0, rtcAlarmTrigger, FALLING); //this is the main RTC interrupt - It breaks you out of the tap counter while loop
-  attachInterrupt(1, INT1pinD3_triggered, FALLING); //sensor alarm=low connected to pin D3
+  attachInterrupt(0, rtcAlarmTrigger, LOW); //this is the main RTC interrupt - It breaks you out of the tap counter while loop
+  attachInterrupt(1, INT1pinD3_triggered, LOW); //sensor alarm=low connected to pin D3
   EIFR = _BV (INTF0);  // clear flag for interrupt 0  see https://gammon.com.au/interrupts
   EIFR = _BV (INTF1);  // clear flag for interrupt 1
   sleep_enable();
